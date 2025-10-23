@@ -22,7 +22,7 @@ def ackley_func(x):
 
 
 def quadratic_func(x0):
-    return sum([x**2 + 2 * x - 3 for x in x0])
+    return float(sum([x**2  for x in x0]))
 
 
 def draw_plot(data, R=10):
@@ -54,14 +54,14 @@ def draw_plot(data, R=10):
             avg_test_data = [x[:min_length] for x in test_data]
             avg_test_data = np.mean(avg_test_data, axis=0)
 
-            if len(avg_test_data) > 800:
+            if len(avg_test_data) > 2000:
                 plt.xscale("log")
             plt.plot(
                 range(1, len(avg_test_data) + 1),
                 avg_test_data,
                 label=f"best-so-far, sigma={power}",
             )
-            plt.title(f"{function_name}")
+            plt.title(f"{function_name} (avg)")
             plt.legend()
             plt.savefig(f"{function_name}_avg.png")
 
@@ -75,7 +75,7 @@ def draw_plot(data, R=10):
             )
             data = solver(
                 eval_func,
-                np.random.randint(-n, n, n).tolist(),
+                x0,
                 power,
                 update_power_period,
                 n * 100,
@@ -94,7 +94,7 @@ def draw_plot(data, R=10):
                 label=f"best-so-far, sigma={power}",
             )
         plt.xlabel("Iteracje t")
-        plt.ylabel("Wartość funkcji f(t)")
+        plt.ylabel("f(t)/best-so-far")
         plt.title(f"{function_name}")
         plt.legend()
         plt.savefig(f"{function_name}.png")
@@ -134,6 +134,7 @@ def solver(
             else:
                 step_size *= 0.82
             better_solution_counter = 0
+    print(current_min)
     return values_at_points
 
 
@@ -143,6 +144,6 @@ data = {
     "funkcja rosen, n=10": [rosen_func, 10, [0.5, 1, 5], 10, 200],
     "funkcja rosen, n=30": [rosen_func, 30, [0.5, 1, 5], 10, 200],
     "funkcja ackley, n=10": [ackley_func, 10, [0.5, 1, 2, 5], 10, 200],
-    "funkcja ackley, n=30": [ackley_func, 30, [0.5, 1, 2, 5], 10, 200],
+    "funkcja ackley, n=30": [ackley_func, 30, [0.5, 1, 2, 5, 10], 10, 3000],
 }
 draw_plot(data, 20)

@@ -30,6 +30,7 @@ def draw_plot(data, R=10):
         plt.figure(figsize=(8, 5))
         plt.xlabel("Iteracje t")
         plt.ylabel("Wartość funkcji f(t)")
+        x0 = np.random.randint(-params[1], params[1], params[1]).tolist()
         for power in params[2]:
             eval_func, n, update_power_period, max_without_new_best_value = (
                 params[0],
@@ -41,7 +42,7 @@ def draw_plot(data, R=10):
             for _ in range(R):
                 data = solver(
                     eval_func,
-                    np.random.randint(-n, n, n).tolist(),
+                    x0,
                     power,
                     update_power_period,
                     n * 100,

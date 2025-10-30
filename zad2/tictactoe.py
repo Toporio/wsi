@@ -1,6 +1,6 @@
 class tictactoe:
     """
-    board: simple 1d array, cells id range from 1 to 9
+    board: simple 1d array, cells id from 1 to 9
     """
 
     def __init__(self, board=[]):

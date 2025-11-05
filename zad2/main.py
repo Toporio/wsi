@@ -4,7 +4,8 @@ from game import Game
 
 
 def main():
-    game = Game(minmaxPlayer("X", 10), minmaxPlayer("O", 10))
+    d = 2
+    game = Game(minmaxPlayer("X", d), minmaxPlayer("O", d))
     game.game_loop()
 
 

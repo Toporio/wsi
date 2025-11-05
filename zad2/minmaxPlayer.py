@@ -58,8 +58,7 @@ class minmaxPlayer:
 
         if result:
             return self.score_table[result]
-
-        if depth == 0:
+        if depth == 1:
             return self.eval_board(board_game)
         if is_maximizing:
             best_score = -inf

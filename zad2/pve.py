@@ -19,7 +19,7 @@ class Player:
 
 results = {"X": "Player X wins!", "O": "Player O wins!", "D": "It's a tie!"}
 game = tictactoe()
-playerX = minmaxPlayer("O", 5)
+playerX = minmaxPlayer("O", 2)
 playerO = Player("X")
 players = (playerO, playerX)
 
